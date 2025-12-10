@@ -112,19 +112,17 @@ async def get_seconds(time_string):
             value += ts[index]
             index += 1
 
-        # FIX: Lowercase and strip trailing 's' to handle plurals (days -> day)
         unit = ts[index:].lstrip().lower().rstrip('s') 
 
         if value:
             value = int(value)
         else:
-            return 0, "" # Return 0 if no value found
+            return 0, ""
 
         return value, unit
 
     value, unit = extract_value_and_unit(time_string)
 
-    # Use a dictionary for cleaner mapping of units to seconds
     unit_to_seconds = {
         's': 1, 'sec': 1, 'second': 1,
         'min': 60, 'minute': 60,
@@ -139,5 +137,4 @@ async def get_seconds(time_string):
     if seconds_per_unit > 0:
         return value * seconds_per_unit
     else:
-        # Returns 0 if the unit is invalid
         return 0
