@@ -1,8 +1,3 @@
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.enums import ChatAction, ChatMemberStatus
@@ -13,22 +8,14 @@ import logging
 from functools import wraps
 from config import Config
 import asyncio
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 chat_data_cache = {}
 ADMIN_URL = Config.ADMIN_URL
 FSUB_PIC = Config.FSUB_PIC
 BOT_USERNAME = Config.BOT_USERNAME
 OWNER_ID = Config.OWNER_ID
 FSUB_LINK_EXPIRY = 10
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 def check_ban(func):
     @wraps(func)
     async def wrapper(client, message, *args, **kwargs):
@@ -44,11 +31,7 @@ def check_ban(func):
             )
         return await func(client, message, *args, **kwargs)
     return wrapper
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 def check_fsub(func):
     @wraps(func)
     async def wrapper(client, message, *args, **kwargs):
@@ -107,11 +90,7 @@ def check_fsub(func):
             return
 
     return wrapper
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 async def check_admin(filter, client, update):
     try:
         user_id = update.from_user.id
@@ -212,18 +191,13 @@ async def not_joined(client: Client, message: Message):
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 @Client.on_message(filters.private & filters.command("autorename"))
 @check_ban
 @check_fsub
 async def auto_rename_command(client, message):
     user_id = message.from_user.id
 
-    # Extract and validate the format from the command
     command_parts = message.text.split(maxsplit=1)
     if len(command_parts) < 2 or not command_parts[1].strip():
         await message.reply_text(
@@ -235,10 +209,8 @@ async def auto_rename_command(client, message):
 
     format_template = command_parts[1].strip()
 
-    # Save the format template in the database
     await rexbots.set_format_template(user_id, format_template)
 
-    # Send confirmation message with the template in monospaced font
     await message.reply_text(
         f"**🌟 Fantastic! You're ready to auto-rename your files.**\n\n"
         "📩 Simply send the file(s) you want to rename.\n\n"
@@ -250,39 +222,22 @@ async def auto_rename_command(client, message):
 @check_ban
 @check_fsub
 async def set_media_command(client, message):
-    # Define inline keyboard buttons for media type selection
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("📄 Document", callback_data="setmedia_document")],
         [InlineKeyboardButton("🎥 Video", callback_data="setmedia_video")]
     ])
 
-    # Send a message with the inline buttons
     await message.reply_text(
         "**Please select the media type you want to set:**",
         reply_markup=keyboard
     )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+    
 @Client.on_callback_query(filters.regex("^setmedia_"))
 async def handle_media_selection(client, callback_query):
     user_id = callback_query.from_user.id
-    media_type = callback_query.data.split("_", 1)[1]  # Extract media type from callback data
+    media_type = callback_query.data.split("_", 1)[1]
 
-    # Save the preferred media type in the database
     await rexbots.set_media_preference(user_id, media_type)
 
-
-
-
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------    
-
-    # Acknowledge the callback and send confirmation
     await callback_query.answer(f"Media preference set to: {media_type} ✅")
     await callback_query.message.edit_text(f"**Media preference set to:** {media_type} ✅")
