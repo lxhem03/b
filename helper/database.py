@@ -1,19 +1,10 @@
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
 import motor.motor_asyncio
 import pytz
 import logging
 from config import Config
 from datetime import timedelta, datetime, date, timezone
 from helper.utils import send_log
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
 class Seishiro:
     def __init__(self, uri, database_name):
         try:
@@ -37,11 +28,7 @@ class Seishiro:
         self.banned_users = self.database['banned_users']
         self.col = self.database.users
         self.timezone = timezone.utc
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     def new_user(self, id, username=None):
         return dict(
             _id=int(id),
@@ -62,11 +49,7 @@ class Seishiro:
                 ban_reason='',
             )
         )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def save_verification(self, user_id, verification_type):
         """
         Save verification event to verification_data collection
@@ -81,11 +64,7 @@ class Seishiro:
         }
         await self.verification_data.insert_one(verification)
         logging.info(f"Verification event saved for user {user_id}, type {verification_type} at {now}")
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     def get_start_end_dates_verification(self, time_period, year=None):
         """Get start and end dates for verification counting"""
         now = datetime.now(self.timezone)
@@ -115,11 +94,7 @@ class Seishiro:
             raise ValueError("Invalid time period")
         
         return start_datetime, end_datetime
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def get_vr_count_combined(self, time_period, year=None):
         """
         Get verification count from verification_data collection
@@ -128,13 +103,11 @@ class Seishiro:
         try:
             start_datetime, end_datetime = self.get_start_end_dates_verification(time_period, year)
             
-            # Make sure both datetimes are timezone-aware
             if start_datetime.tzinfo is None:
                 start_datetime = start_datetime.replace(tzinfo=self.timezone)
             if end_datetime.tzinfo is None:
                 end_datetime = end_datetime.replace(tzinfo=self.timezone)
             
-            # Count verification events in the time period
             count = await self.verification_data.count_documents({
                 'verified_at': {
                     '$gte': start_datetime,
@@ -142,7 +115,6 @@ class Seishiro:
                 }
             })
             
-            # Debug: Show total verifications ever
             total_verifications = await self.verification_data.count_documents({})
             
             logging.info(f"Verification count for {time_period}: {count} (Total ever: {total_verifications}) (from {start_datetime} to {end_datetime})")
@@ -151,11 +123,7 @@ class Seishiro:
         except Exception as e:
             logging.error(f"Error getting verification count for {time_period}: {e}")
             return 0
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def db_verify_status(self, user_id):
         default_verify = {
             'is_verified_1': False,
@@ -175,10 +143,8 @@ class Seishiro:
         return await self.db_verify_status(user_id)
 
     async def update_verify_status(self, user_id, is_verified_1=False, verified_time_1=None, is_verified_2=False, verified_time_2=None):
-        # Ensure user exists first
         await self.ensure_user_exists(user_id)
         
-        # Use current time if not provided
         current_time = datetime.now(self.timezone)
         
         verify_data = {
@@ -195,7 +161,6 @@ class Seishiro:
         logging.info(f"Updating verification status for user {user_id}: {verify_data}")
         await self.db_update_verify_status(user_id, verify_data)
         
-        # Save verification event to verification_data collection
         if is_verified_1:
             await self.save_verification(user_id, verification_type=1)
         if is_verified_2:
@@ -225,11 +190,7 @@ class Seishiro:
             {'$set': {'verify_status_2': status}},
             upsert=True
         )
-  # ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --  
+
     async def get_verification_settings(self):
         settings = await self.verification_settings.find_one({'_id': 'global_settings'})
         if not settings:
@@ -263,11 +224,7 @@ class Seishiro:
                 {"$set": settings_to_update},
                 upsert=True
             )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def set_verify_1(self, api_link: str, verify_token: str):
         """Sets the API link and verification token for verification method 1."""
         await self.update_verification_settings(api_link_1=api_link, verify_token_1=verify_token)
@@ -301,11 +258,7 @@ class Seishiro:
                 logging.error(f"Error creating user {user_id}: {e}")
                 return False
         return True
- # ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --               
+
     async def get_user(self, user_id):
         user_data = await self.col.find_one({"_id": user_id})
         return user_data
@@ -343,7 +296,6 @@ class Seishiro:
         except Exception as e:
             logging.error(f"Error deleting user {user_id}: {e}")
 
-    # ADMIN DATA
     async def admin_exist(self, admin_id: int):
         found = await self.admins_data.find_one({'_id': admin_id})
         return bool(found)
@@ -361,7 +313,6 @@ class Seishiro:
         user_ids = [doc['_id'] for doc in users_docs]
         return user_ids
 
-    # CHANNEL MANAGEMENT
     async def channel_exist(self, channel_id: int):
         found = await self.fsub_data.find_one({'_id': channel_id})
         return bool(found)
@@ -390,7 +341,6 @@ class Seishiro:
             upsert=True
         )
 
-    # REQUEST FORCE-SUB MANAGEMENT
     async def req_user(self, channel_id: int, user_id: int):
         try:
             await self.rqst_fsub_Channel_data.update_one(
@@ -422,7 +372,6 @@ class Seishiro:
         channel_ids = await self.show_channels()
         return channel_id in channel_ids
 
-    # Premium Management - Fixed implementation
     async def add_premium(self, user_id: int, duration_days: int = 30):
         """Add premium access for a user"""
         expiration_time = datetime.now(self.timezone) + timedelta(days=duration_days)
@@ -444,29 +393,19 @@ class Seishiro:
             if expiry_time is None:
                 return False
             elif isinstance(expiry_time, datetime):
-                # Get current time with timezone
                 current_time = datetime.now(self.timezone)
                 
-                # MongoDB returns datetime as naive even if stored as aware
-                # Add timezone info back if it's missing
                 if expiry_time.tzinfo is None:
                     expiry_time = expiry_time.replace(tzinfo=self.timezone)
                 
-                # Now both are timezone-aware, safe to compare
                 if current_time <= expiry_time:
                     return True
                 else:
-                    # Premium expired, remove it
                     await self.col.update_one({"_id": user_id}, {"$set": {"expiry_time": None, "is_premium": False}})
             else:
-                # Invalid expiry_time format, clean it up
                 await self.col.update_one({"_id": user_id}, {"$set": {"expiry_time": None, "is_premium": False}})
         return False
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def get_expired(self, current_time=None):
         if current_time is None:
             current_time = datetime.now(self.timezone)
@@ -500,11 +439,7 @@ class Seishiro:
         except Exception as e:
             logging.error(f"Error getting thumbnail for user {id}: {e}")
             return None
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def set_caption(self, id, caption):
         try:
             await self.col.update_one({"_id": int(id)}, {"$set": {"caption": caption}})
@@ -582,11 +517,7 @@ class Seishiro:
                 "ban_status.banned_on": None
             }}
         )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
+
     async def is_banned(self, user_id):
         return await self.banned_users.find_one({'_id': int(user_id)})
 
@@ -655,14 +586,5 @@ class Seishiro:
 
     async def set_custom_tag(self, user_id, custom_tag):
         await self.col.update_one({'_id': int(user_id)}, {'$set': {'custom_tag': custom_tag}})
-
-
-
-
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
         
 rexbots = Seishiro(Config.DB_URL, Config.DB_NAME)
