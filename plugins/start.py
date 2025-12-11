@@ -1,34 +1,15 @@
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
-import requests
-import random
-import asyncio
-import base64
-import logging
-import string
+import requests, random, asyncio, base64, logging, string
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import ChatAction, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant
 from datetime import datetime, timedelta
 from functools import wraps
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 from helper.database import *
 from config import Config
 from .callbacks import cb_handler
 from plugins.helper_func import *
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 chat_data_cache = {}
 ADMIN_URL = Config.ADMIN_URL
 FSUB_PIC = Config.FSUB_PIC
@@ -36,18 +17,10 @@ BOT_USERNAME = Config.BOT_USERNAME
 OWNER_ID = Config.OWNER_ID
 FSUB_LINK_EXPIRY = 10
 active_tasks = {}
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 def check_ban(func):
     @wraps(func)
     async def wrapper(client, message, *args, **kwargs):
@@ -63,27 +36,19 @@ def check_ban(func):
             )
         return await func(client, message, *args, **kwargs)
     return wrapper
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 async def check_user_premium(user_id):
     """Check if user has premium access - handles missing method gracefully"""
     try:
-        # First check if the method exists
         if hasattr(rexbots, 'has_premium_access'):
             return await rexbots.has_premium_access(user_id)
         else:
-            # Fallback: Check database directly
             user_data = await rexbots.col.find_one({"_id": user_id})
             if not user_data:
                 return False
             
-            # Check for premium in user data
             premium_data = user_data.get("premium", {})
             
-            # Check if premium is active and not expired
             is_premium = premium_data.get("is_premium", False)
             expiry_date = premium_data.get("expiry_date")
             
@@ -97,11 +62,7 @@ async def check_user_premium(user_id):
     except Exception as e:
         logger.error(f"Error checking premium status: {e}")
         return False
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+        
 def check_verification(func):
     @wraps(func)
     async def wrapper(client, message, *args, **kwargs):
@@ -121,26 +82,20 @@ def check_verification(func):
                 except Exception as e:
                     logger.error(f"Error processing start parameter: {e}")
     
-            # Step 1: Check if user has premium access - premium users bypass verification
             try:
                 if await check_user_premium(user_id):
                     logger.debug(f"User {user_id} has premium, bypassing verification")
                     return await func(client, message, *args, **kwargs)
             except Exception as e:
                 logger.error(f"Error checking premium status in decorator: {e}")
-                # Continue with verification check even if premium check fails
-            
-            # Step 2: Get verification settings to check if verification is enabled
             settings = await rexbots.get_verification_settings()
             verify_status_1 = settings.get("verify_status_1", False)
             verify_status_2 = settings.get("verify_status_2", False)
             
-            # If both verification systems are disabled, allow access
             if not verify_status_1 and not verify_status_2:
                 logger.debug(f"Verification disabled, allowing user {user_id}")
                 return await func(client, message, *args, **kwargs)
             
-            # Step 3: Check if user is already verified (EXACTLY like /verify command)
             try:
                 if await is_user_verified(user_id):
                     try:
@@ -152,7 +107,6 @@ def check_verification(func):
                         
                         current_time = datetime.utcnow()
                         
-                        # Check if fully verified (shortener 1 within 24 hours)
                         if verified_time_1:
                             try:
                                 if isinstance(verified_time_1, datetime) and current_time < verified_time_1 + timedelta(hours=24):
@@ -165,7 +119,6 @@ def check_verification(func):
                             except Exception as e:
                                 logger.error(f"Error checking verified_time_1: {e}")
 
-                        # Check if fully verified (shortener 2 within 24 hours)
                         if verified_time_2:
                             try:
                                 if isinstance(verified_time_2, datetime) and current_time < verified_time_2 + timedelta(hours=24):
@@ -183,8 +136,6 @@ def check_verification(func):
             except Exception as e:
                 logger.error(f"Error in is_user_verified check: {e}")
 
-            
-            # Step 4: User is NOT verified - send verification message
             logger.debug(f"User {user_id} is not verified, sending verification prompt")
 
             try:
@@ -206,11 +157,6 @@ def check_verification(func):
             return
     
     return wrapper
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------        
 async def check_admin(filter, client, update):
     try:
         user_id = update.from_user.id
@@ -220,11 +166,6 @@ async def check_admin(filter, client, update):
         return False
             
 admin = filters.create(check_admin)
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 def check_fsub(func):
     @wraps(func)
     async def wrapper(client, message, *args, **kwargs):
@@ -281,16 +222,10 @@ def check_fsub(func):
             await message.reply_text(f"An unexpected error occurred: {e}. Please contact the developer.")
             return
     return wrapper
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 async def not_joined(client: Client, message: Message):
     logger.debug(f"not_joined function called for user {message.from_user.id}")
     temp = await message.reply("<b><i>ᴡᴀɪᴛ ᴀ sᴇᴄ..</i></b>")
 
-    # Add a check to ensure temp message exists before proceeding
     if not temp:
         logger.warning("Failed to send temporary message in not_joined")
         return
@@ -392,11 +327,6 @@ async def not_joined(client: Client, message: Message):
             f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @seishiro_obito</i></b>\n"
             f"<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {e}</blockquote>"
         )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 @Client.on_message(filters.private & filters.command("start"))
 @check_ban
 @check_verification
@@ -407,12 +337,10 @@ async def start(client, message: Message):
     
     text = message.text
     
-    # Check if there's a parameter after /start
     if len(text) > 7:
         try:
             param = text.split(" ", 1)[1]
             
-            # Check if it's a verification callback
             if param.startswith("verify_"):
                 token = param[7:]
                 await handle_verification_callback(client, message, token)
@@ -421,7 +349,6 @@ async def start(client, message: Message):
         except Exception as e:
             logger.error(f"Error processing start parameter: {e}")
     
-    # Normal start command - show welcome message
     await rexbots.add_user(client, message)
     await show_start_message(client, message)
 
@@ -479,11 +406,6 @@ async def show_start_message(client, message: Message):
             reply_markup=buttons,
             disable_web_page_preview=True
         )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 async def handle_verification_callback(client, message: Message, token: str):
     """Handle when user returns after completing verification through shortlink"""
     user_id = message.from_user.id
@@ -492,20 +414,17 @@ async def handle_verification_callback(client, message: Message, token: str):
     logger.info(f"[VERIFY] Starting verification callback for user {user_id} with token {token}")
     
     try:
-        # Get verification settings
         settings = await rexbots.get_verification_settings()
         verify_status_1 = settings.get("verify_status_1", False)
         verify_status_2 = settings.get("verify_status_2", False)
         
         logger.info(f"[VERIFY] Settings - verify_status_1: {verify_status_1}, verify_status_2: {verify_status_2}")
         
-        # If verification is disabled, just show start message
         if not verify_status_1 and not verify_status_2:
             logger.info(f"[VERIFY] Verification disabled, showing start message")
             await show_start_message(client, message)
             return 
         
-        # Find the user who owns this token
         logger.info(f"[VERIFY] Looking up token in database for user {user_id}")
         token_owner = await rexbots.col.find_one({
             "_id": user_id,
@@ -528,7 +447,6 @@ async def handle_verification_callback(client, message: Message, token: str):
         logger.info(f"[VERIFY] token_user_id: {token_user_id}, token_created_at: {token_created_at}")
         selected_shortener = verification_data.get("selected_shortener")
         
-        # Check if token belongs to this user
         if token_user_id != user_id:
             logger.warning(f"[VERIFY] Token mismatch! Expected {user_id}, got {token_user_id}")
             await message.reply_text(
@@ -537,7 +455,6 @@ async def handle_verification_callback(client, message: Message, token: str):
             )
             return
         
-        # Check if token has expired (24 hours)
         if token_created_at:
             time_diff = current_time - token_created_at
             logger.info(f"[VERIFY] Time difference: {time_diff.total_seconds()} seconds")
@@ -548,7 +465,6 @@ async def handle_verification_callback(client, message: Message, token: str):
                     "❌ Yᴏᴜʀ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴛᴏᴋᴇɴ ʜᴀs ᴇxᴘɪʀᴇᴅ!\n\n"
                     "Pʟᴇᴀsᴇ ɢᴇɴᴇʀᴀᴛᴇ ᴀ ɴᴇᴡ ʟɪɴᴋ ᴜsɪɴɢ /verify"
                 )
-                # Clear expired token
                 await rexbots.col.update_one(
                     {"_id": user_id},
                     {"$unset": {
@@ -559,7 +475,6 @@ async def handle_verification_callback(client, message: Message, token: str):
                 )
                 return
             
-            # Check for bypass (verification completed too quickly
             if time_diff < timedelta(minutes=1):
                 logger.warning(f"[VERIFY] Bypass detected! Completed in {time_diff.total_seconds()} seconds")
                 await message.reply_text(
@@ -567,7 +482,6 @@ async def handle_verification_callback(client, message: Message, token: str):
                     f"• Yᴏᴜ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ᴛʜᴇ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴛᴏᴏ ǫᴜɪᴄᴋʟʏ ({int(time_diff.total_seconds())} sᴇᴄᴏɴᴅs).\n\n"
                     f"Pʟᴇᴀsᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴛʜᴇ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴘʀᴏᴘᴇʀʟʏ. Usᴇ /verify ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴀ ɴᴇᴡ ʟɪɴᴋ."
                 )
-                # Clear the token
                 await rexbots.col.update_one(
                     {"_id": user_id},
                     {"$unset": {
@@ -578,7 +492,6 @@ async def handle_verification_callback(client, message: Message, token: str):
                 )
                 return
         
-        # All checks passed - Update verification time (24 hour validity)
         logger.info(f"[VERIFY] All checks passed! Updating database...")
         
         update_result = await rexbots.col.update_one(
@@ -597,14 +510,12 @@ async def handle_verification_callback(client, message: Message, token: str):
         
         logger.info(f"[VERIFY] Database update result: matched={update_result.matched_count}, modified={update_result.modified_count}")
         
-        # Calculate time taken
         time_taken = current_time - token_created_at if token_created_at else timedelta(0)
         minutes_taken = int(time_taken.total_seconds() // 60)
         seconds_taken = int(time_taken.total_seconds() % 60)
         
         logger.info(f"[VERIFY] Sending success message to user {user_id}")
         
-        # Send success message
         await message.reply_text(
             f"✅ Vᴇʀɪғɪᴄᴀᴛɪᴏɴ Sᴜᴄᴄᴇssғᴜʟ!\n\n"
             f"›› ʏᴏᴜʀ ᴛᴏᴋᴇɴ ʜᴀs ʙᴇᴇɴ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ ᴀɴᴅ ɪs ᴠᴀʟɪᴅ ғᴏʀ 24ʜᴏᴜʀs ‼️\n\n"
@@ -624,17 +535,11 @@ async def handle_verification_callback(client, message: Message, token: str):
         await message.reply_text(
             f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @seishiro_obito</i></b>\n"
             f"<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {str(e)}</blockquote>"
-        )
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------        
+        )  
 async def send_verification_message(client, message: Message):
     """Generate and send verification shortlink to user"""
     user_id = message.from_user.id
 
-    # Check if user has premium
     if await check_user_premium(user_id):
         await message.reply_text(
             "✨ <b>Yᴏᴜ ʜᴀᴠᴇ Pʀᴇᴍɪᴜᴍ Aᴄᴄᴇss!</b>\n\n"
@@ -645,14 +550,12 @@ async def send_verification_message(client, message: Message):
         )
         return
 
-    # Get verification settings
     settings = await rexbots.get_verification_settings()
     verify_status_1 = settings.get("verify_status_1", False)
     verify_status_2 = settings.get("verify_status_2", False)
     verified_time_1 = settings.get("verified_time_1")
     verified_time_2 = settings.get("verified_time_2")
     
-    # Get available shorteners
     available_shorteners = []
     if verify_status_1:
         available_shorteners.append(1)
@@ -663,13 +566,10 @@ async def send_verification_message(client, message: Message):
         await show_start_message(client, message)
         return 
     
-    # Randomly select a shortener from available ones
     selected_shortener = random.choice(available_shorteners)
     
-    # Generate a random token for verification
     token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     
-    # Store token with user_id and creation time (for expiry and ownership check)
     current_time = datetime.utcnow()
     await rexbots.col.update_one(
         {"_id": user_id},
@@ -682,10 +582,8 @@ async def send_verification_message(client, message: Message):
         upsert=True
     )
     
-    # This is the bot deep link that shortener will redirect to
     redirect_url = f"https://t.me/{Config.BOT_USERNAME}?start=verify_{token}"
     
-    # Get shortlink from the shortener API
     shortlink = await get_shortlink(redirect_url, selected_shortener)
     
     if not shortlink:
@@ -694,7 +592,6 @@ async def send_verification_message(client, message: Message):
         )
         return None
     
-    # Send button with shortlink (e.g., https://lksfy.com/eARog)
     buttons = InlineKeyboardMarkup([[
         InlineKeyboardButton("• Vᴇʀɪғʏ •", url=shortlink)
     ]])
@@ -710,11 +607,6 @@ async def send_verification_message(client, message: Message):
     )
     
     return shortlink
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 @Client.on_message(filters.command("cancel"))
 async def cancel_handler(client, message):
     user_id = message.from_user.id
@@ -725,11 +617,7 @@ async def cancel_handler(client, message):
         await message.reply_text("Pʀᴏᴄᴇss ᴄᴀɴᴄᴇʟʟᴇᴅ...!!")
     else:
         await message.reply_text("Nᴏ ᴀᴄᴛɪᴠᴇ ᴘʀᴏᴄᴇss ᴛᴏ ᴄᴀɴᴄᴇʟ...!!")
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
+
 @Client.on_message(filters.command("verify_settings") & admin)
 async def verify_settings(client, message):
     keyboard = InlineKeyboardMarkup([
@@ -780,11 +668,6 @@ async def get_shortlink(link, shortener_num):
         except Exception as e2:
             logger.error(f"Fallback shortlink failed: {e2}")
             return None
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 async def is_user_verified(user_id):
     """Check if user is verified (either verified_time_1 or verified_time_2 is valid)"""
     try:
@@ -798,7 +681,6 @@ async def is_user_verified(user_id):
         
         current_time = datetime.utcnow()
         
-        # Check if either verification is valid (within 24 hours)
         if verified_time_1:
             if isinstance(verified_time_1, datetime):
                 if current_time < verified_time_1 + timedelta(hours=24):
@@ -813,18 +695,12 @@ async def is_user_verified(user_id):
     except Exception as e:
         logger.error(f"Error checking if user is verified: {e}")
         return False
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
 @Client.on_message(filters.command("verify") & filters.private)
 async def verify_command(client, message: Message):
     """Check verification status or initiate verification"""
     user_id = message.from_user.id
     
     try:
-        # Check if user has premium
         if await check_user_premium(user_id):
             await message.reply_text(
                 "✨ <b>Yᴏᴜ ʜᴀᴠᴇ Pʀᴇᴍɪᴜᴍ Aᴄᴄᴇss!</b>\n\n"
@@ -836,23 +712,19 @@ async def verify_command(client, message: Message):
             return
     except Exception as e:
         logger.error(f"Error checking premium status in verify command: {e}")
-        # Continue with verification check even if premium check fails
 
     try:
-        # Check if user is already verified
         if await is_user_verified(user_id):
             try:
                 user_data = await rexbots.col.find_one({"_id": user_id}) or {}
                 verification_data = user_data.get("verification", {})
                 
-                # Get verification settings
                 settings = await rexbots.get_verification_settings()
                 verified_time_1 = verification_data.get("verified_time_1")
                 verified_time_2 = verification_data.get("verified_time_2")
                 
                 current_time = datetime.utcnow()
                 
-                # Check if fully verified (shortener 1 within 24 hours)
                 if verified_time_1:
                     try:
                         if isinstance(verified_time_1, datetime) and current_time < verified_time_1 + timedelta(hours=24):
@@ -871,7 +743,6 @@ async def verify_command(client, message: Message):
                     except Exception as e:
                         logger.error(f"Error checking verified_time_1: {e}")
 
-                # Check if fully verified (shortener 2 within 24 hours)
                 if verified_time_2:
                     try:
                         if isinstance(verified_time_2, datetime) and current_time < verified_time_2 + timedelta(hours=24):
@@ -892,12 +763,10 @@ async def verify_command(client, message: Message):
                         
             except Exception as e:
                 logger.error(f"Error checking verification status: {e}")
-                # Continue to generate new verification link if there's an error
     
     except Exception as e:
         logger.error(f"Error in is_user_verified check: {e}")
     
-    # User not verified - generate and send verification link
     try:
         await send_verification_message(client, message)
     except Exception as e:
@@ -906,11 +775,3 @@ async def verify_command(client, message: Message):
             f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @seishiro_obito</i></b>\n"
             f"<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {str(e)}</blockquote>"
         )
-
-
-
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# ----------------------------------------
