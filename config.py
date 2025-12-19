@@ -9,19 +9,19 @@ class Config(object)
 
     # database config
     DB_NAME = os.environ.get("DB_NAME", "RexBots")     
-    DB_URL  = os.environ.get("DB_URL", "")
+    DB_URL  = os.environ.get("DB_URL", "mongodb+srv://RahulPrince720:Q7qg69E1oH30LT6d@cluster0.fb0ldjk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
  
     # other configs
     ADMIN_URL = "https://t.me/Tg_Guy_Support"
     DUMP_CHANNEL = os.environ.get("DUMP_CHANNEL", "-1003512818611")
     DUMP = True
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://ibb.co/Cs0zsrCn")
-    LEADERBOARD_PIC = os.environ.get("LEADERBOARD_PIC", "https://ibb.co/RGx4RmDg")
-    OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+    START_PIC   = os.environ.get("START_PIC", "https://files.catbox.moe/lllex3.jpg")
+    LEADERBOARD_PIC = os.environ.get("LEADERBOARD_PIC", "https://files.catbox.moe/lllex3.jpg")
+    OWNER_ID = int(os.environ.get("OWNER_ID", "7465574522"))
     SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1002319965297"))
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1003360643497"))
-    FSUB_PIC = os.environ.get("FSUB_PIC", "")
+    FSUB_PIC = os.environ.get("FSUB_PIC", "https://files.catbox.moe/uhdylt.jpg")
     BOT_USERNAME = os.environ.get("BOT_USERNAME", "CorazonXRenamerobot")
     LEADERBOARD_DELETE_TIMER = 30
     # wes response configuration     
