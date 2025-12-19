@@ -1,20 +1,10 @@
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
 import re, os, time
 id_pattern = re.compile(r'^.\d+$') 
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
-class Config(object):
-    # pyro client config
-    API_ID    = os.environ.get("API_ID", "")
-    API_HASH  = os.environ.get("API_HASH", "")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+
+class Config(object)
+    API_ID    = os.environ.get("API_ID", "23340285")
+    API_HASH  = os.environ.get("API_HASH", "ab18f905cb5f4a75d41bb48d20acfa50")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "8500246274:AAETH_r_w1R5AUOj_oLyQuLYbxJK20PBm68")
     PORT = os.environ.get("PORT", "8980")
 
     # database config
@@ -22,20 +12,20 @@ class Config(object):
     DB_URL  = os.environ.get("DB_URL", "")
  
     # other configs
-    ADMIN_URL = "https://t.me/adityaabhinav"
-    DUMP_CHANNEL = os.environ.get("DUMP_CHANNEL", "-1002257657458")
+    ADMIN_URL = "https://t.me/Tg_Guy_Support"
+    DUMP_CHANNEL = os.environ.get("DUMP_CHANNEL", "-1003512818611")
     DUMP = True
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://ibb.co/Cs0zsrCn")
     LEADERBOARD_PIC = os.environ.get("LEADERBOARD_PIC", "https://ibb.co/RGx4RmDg")
-    OWNER_ID = int(os.environ.get("OWNER_ID", "6701907262"))
-    SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1002871570975"))
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
+    OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+    SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1002319965297"))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1003360643497"))
     FSUB_PIC = os.environ.get("FSUB_PIC", "")
-    BOT_USERNAME = os.environ.get("BOT_USERNAME", "")
+    BOT_USERNAME = os.environ.get("BOT_USERNAME", "CorazonXRenamerobot")
     LEADERBOARD_DELETE_TIMER = 30
     # wes response configuration     
-    WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
+    WEBHOOK = bool(os.environ.get("WEBHOOK", "False"))
     
     #========================================================================================   
     START_TXT = """<b>ʜᴇʏ! {mention}  
@@ -114,10 +104,3 @@ class Config(object):
 ➲ /metadata: ᴄᴏᴍᴍᴀɴᴅꜱ ᴛᴏ ᴛᴜʀɴ ᴏɴ ᴏғғ ᴍᴇᴛᴀᴅᴀᴛᴀ.
 ➲ /help: ɢᴇᴛ ǫᴜɪᴄᴋ ᴀꜱꜱɪꜱᴛᴀɴᴄᴇ.</b>"""
 #================================================================================
-
-
-# ----------------------------------------
-# 𝐌𝐀𝐃𝐄 𝐁𝐘 𝐀𝐁𝐇𝐈
-# 𝐓𝐆 𝐈𝐃 : @𝐂𝐋𝐔𝐓𝐂𝐇𝟎𝟎𝟖
-# 𝐀𝐍𝐘 𝐈𝐒𝐒𝐔𝐄𝐒 𝐎𝐑 𝐀𝐃𝐃𝐈𝐍𝐆 𝐌𝐎𝐑𝐄 𝐓𝐇𝐈𝐍𝐆𝐬 𝐂𝐀𝐍 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐌𝐄
-# --
