@@ -1,7 +1,7 @@
 import re, os, time
 id_pattern = re.compile(r'^.\d+$') 
 
-class Config(object)
+class Config(object):
     API_ID    = os.environ.get("API_ID", "23340285")
     API_HASH  = os.environ.get("API_HASH", "ab18f905cb5f4a75d41bb48d20acfa50")
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "8500246274:AAETH_r_w1R5AUOj_oLyQuLYbxJK20PBm68")
